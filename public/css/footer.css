@@ -1,0 +1,7 @@
+/* Footer-specific overrides (base footer styling lives in style.css for the same
+   reason as navbar.css). Reserved for footer variants, e.g. the minimal
+   auth-page footer. */
+.footer-minimal{
+    padding: 1.5rem 0;
+    text-align: center;
+}

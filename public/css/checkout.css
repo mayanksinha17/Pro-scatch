@@ -1,0 +1,51 @@
+.checkout-steps{
+    display:flex; justify-content:center; gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+.checkout-steps .step{
+    display:flex; align-items:center; gap:.6rem;
+    color: var(--text-muted); font-weight:600; font-size:.9rem;
+}
+.checkout-steps .step .num{
+    width: 28px; height:28px; border-radius:50%;
+    background: var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.8rem; color:#fff;
+}
+.checkout-steps .step.active .num{ background: var(--gold); color: var(--ink); }
+.checkout-steps .step.active{ color: var(--ink); }
+
+.checkout-panel{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+.checkout-panel h5{ margin-bottom: 1.25rem; }
+
+.payment-option{
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+}
+.payment-option:hover{ border-color: var(--gold); }
+.payment-option.selected{
+    border-color: var(--gold);
+    background: rgba(198,149,44,.06);
+}
+
+.coupon-box{
+    display:flex; gap:.5rem;
+}
+.coupon-applied{
+    background: rgba(76,122,94,.1);
+    color: var(--success);
+    border: 1px solid var(--success);
+    border-radius: var(--radius-sm);
+    padding: .6rem .9rem;
+    font-size: .9rem;
+    display:flex; justify-content:space-between; align-items:center;
+}

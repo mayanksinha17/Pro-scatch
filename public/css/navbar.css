@@ -1,0 +1,6 @@
+/* Navbar-specific overrides (base nav styling lives in style.css since it's shared
+   sitewide and loaded on every page — duplicating full nav rules per-page would
+   cause specificity conflicts). This file is for page-triggered nav states only. */
+body.scrolled .navbar{
+    box-shadow: var(--shadow-md);
+}

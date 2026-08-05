@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layouts/head', { title: 'Checkout — Scatch', pageCss: ['checkout'] }) %>
+<body>
+<%- include('../layouts/navbar') %>
+
+<section class="container my-5">
+    <h1 class="mb-4 text-center">Checkout</h1>
+
+    <div class="checkout-steps">
+        <div class="step active"><span class="num">1</span> Shipping</div>
+        <div class="step active"><span class="num">2</span> Payment</div>
+        <div class="step active"><span class="num">3</span> Review</div>
+    </div>
+
+    <div id="checkoutAlert" class="alert d-none"></div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+
+            <div class="checkout-panel">
+                <h5><i class="bi bi-geo-alt"></i> Shipping address</h5>
+                <form id="addressForm" class="row g-3" novalidate>
+                    <div class="col-md-6">
+                        <label class="form-label">Full name</label>
+                        <input type="text" class="form-control" id="addrName" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Phone number</label>
+                        <input type="tel" class="form-control" id="addrPhone" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Address line</label>
+                        <input type="text" class="form-control" id="addrLine" required placeholder="House no., street, area">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="addrCity" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-control" id="addrState" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">PIN code</label>
+                        <input type="text" class="form-control" id="addrPin" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="checkout-panel">
+                <h5><i class="bi bi-credit-card"></i> Payment method</h5>
+                <div class="d-flex flex-column gap-2" id="paymentOptions">
+                    <label class="payment-option selected d-flex align-items-center gap-2">
+                        <input type="radio" name="payment" value="cod" checked>
+                        <i class="bi bi-cash-coin"></i> Cash on Delivery
+                    </label>
+                    <label class="payment-option d-flex align-items-center gap-2">
+                        <input type="radio" name="payment" value="card">
+                        <i class="bi bi-credit-card-2-front"></i> Credit / Debit Card
+                    </label>
+                    <label class="payment-option d-flex align-items-center gap-2">
+                        <input type="radio" name="payment" value="upi">
+                        <i class="bi bi-phone"></i> UPI
+                    </label>
+                </div>
+                <p class="text-muted small mt-2 mb-0">
+                    <i class="bi bi-info-circle"></i> This is a demo store — no real payment gateway is
+                    connected. Orders are recorded with the payment method you select.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+            <div class="checkout-panel">
+                <h5>Order summary</h5>
+                <div id="checkoutItems" class="mb-3"></div>
+
+                <div class="coupon-box mb-3">
+                    <input type="text" class="form-control" id="couponInput" placeholder="Coupon code">
+                    <button class="btn btn-outline-ink" id="applyCouponBtn">Apply</button>
+                </div>
+                <div id="couponResult"></div>
+
+                <div class="cart-summary p-0 border-0">
+                    <div class="summary-row"><span>Subtotal</span><span id="coSubtotal">₹0</span></div>
+                    <div class="summary-row"><span>Shipping</span><span id="coShipping">₹0</span></div>
+                    <div class="summary-row"><span>Tax</span><span id="coTax">₹0</span></div>
+                    <div class="summary-row" id="coDiscountRow" style="display:none;"><span>Discount</span><span id="coDiscount">-₹0</span></div>
+                    <div class="summary-row total"><span>Total</span><span id="coTotal">₹0</span></div>
+                </div>
+
+                <button class="btn btn-gold w-100 mt-3" id="placeOrderBtn">
+                    <i class="bi bi-lock-fill"></i> Place order
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../layouts/footer') %>
+<script src="/javascript/checkout.js"></script>
+</body>
+</html>

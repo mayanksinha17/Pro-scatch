@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layouts/head', { title: product.name + ' — Scatch', pageCss: ['product'] }) %>
+<body>
+<%- include('../layouts/navbar') %>
+
+<section class="container my-4">
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/shop">Shop</a></li>
+            <li class="breadcrumb-item active"><%= product.name %></li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <!-- Gallery -->
+        <div class="col-lg-6">
+            <div class="pdp-gallery-main" id="galleryMain">
+                <img id="mainImage" src="<%= product.image || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800' %>" alt="<%= product.name %>">
+            </div>
+            <div class="pdp-thumbs">
+                <img src="<%= product.image || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800' %>" class="active" data-full="<%= product.image || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800' %>">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200" data-full="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200" data-full="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800">
+            </div>
+            <p class="small text-muted mt-2"><i class="bi bi-zoom-in"></i> Click the image to zoom</p>
+        </div>
+
+        <!-- Details -->
+        <div class="col-lg-6">
+            <p class="eyebrow mb-2">Scatch Original</p>
+            <h1 class="pdp-title"><%= product.name %></h1>
+
+            <div class="pdp-rating my-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                <span class="text-muted small ms-2">4.5 (128 reviews)</span>
+            </div>
+
+            <div class="pdp-price mb-3">
+                ₹<%= (product.price - (product.price * (product.discount||0) / 100)).toFixed(0) %>
+                <% if (product.discount && product.discount > 0) { %>
+                    <span class="old-price">₹<%= product.price %></span>
+                    <span class="badge bg-danger ms-2"><%= product.discount %>% OFF</span>
+                <% } %>
+            </div>
+
+            <p class="text-muted">
+                A carefully crafted piece from the Scatch collection — built with premium
+                materials and finished for everyday wear. Pairs effortlessly with the rest
+                of your wardrobe.
+            </p>
+
+            <div class="d-flex align-items-center gap-3 my-4">
+                <span class="fw-semibold small">Quantity</span>
+                <div class="qty-selector">
+                    <button type="button" id="qtyMinus">−</button>
+                    <input type="text" id="qtyInput" value="1" readonly>
+                    <button type="button" id="qtyPlus">+</button>
+                </div>
+            </div>
+
+            <div class="d-flex gap-3">
+                <button class="btn btn-ink btn-lg flex-fill add-to-cart-btn"
+                        id="addToCartBtn"
+                        data-id="<%= product._id %>"
+                        data-name="<%= product.name %>"
+                        data-price="<%= product.price %>"
+                        data-discount="<%= product.discount || 0 %>"
+                        data-image="<%= product.image || '' %>"
+                        data-qty="1">
+                    <i class="bi bi-bag-plus"></i> Add to cart
+                </button>
+                <button class="btn btn-gold btn-lg flex-fill" id="buyNowBtn">
+                    Buy now
+                </button>
+            </div>
+
+            <div class="d-flex gap-4 mt-4 small text-muted">
+                <span><i class="bi bi-truck"></i> Free shipping over ₹999</span>
+                <span><i class="bi bi-arrow-repeat"></i> 7-day returns</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs: Description / Specs / Reviews -->
+    <div class="mt-5">
+        <ul class="nav pdp-tabs mb-4" id="pdpTabs">
+            <li class="nav-item"><button class="nav-link active" data-tab="desc">Description</button></li>
+            <li class="nav-item"><button class="nav-link" data-tab="specs">Specifications</button></li>
+            <li class="nav-item"><button class="nav-link" data-tab="reviews">Reviews (128)</button></li>
+        </ul>
+
+        <div class="tab-pane" data-pane="desc">
+            <p class="text-muted" style="max-width:720px;">
+                <%= product.name %> is designed for those who care about the details. Every
+                stitch and seam is finished to a standard that holds up to daily wear, while
+                staying true to a clean, considered aesthetic.
+            </p>
+        </div>
+
+        <div class="tab-pane d-none" data-pane="specs">
+            <table class="table spec-table" style="max-width:520px;">
+                <tbody>
+                    <tr><td>Category</td><td>Fashion & Lifestyle</td></tr>
+                    <tr><td>Material</td><td>Premium blend</td></tr>
+                    <tr><td>Care</td><td>Machine wash cold</td></tr>
+                    <tr><td>Origin</td><td>Designed in-house</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane d-none" data-pane="reviews">
+            <div class="review-card">
+                <strong>Aditi R.</strong> <span class="text-muted small">— 2 weeks ago</span>
+                <div class="pdp-rating small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                <p class="mb-0 small text-muted">Great quality, fits true to size. Would buy again.</p>
+            </div>
+            <div class="review-card">
+                <strong>Rohan K.</strong> <span class="text-muted small">— 1 month ago</span>
+                <div class="pdp-rating small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+                <p class="mb-0 small text-muted">Solid product for the price. Delivery was quick.</p>
+            </div>
+            <p class="text-muted small mt-3">
+                <i class="bi bi-info-circle"></i> Reviews shown here are illustrative — there's no
+                reviews model/API on the backend yet, so this section isn't wired to real data.
+            </p>
+        </div>
+    </div>
+
+    <!-- Related products -->
+    <div class="mt-5 pt-3">
+        <div class="section-title">
+            <h2>You may also like</h2>
+            <div class="rule"></div>
+        </div>
+        <div class="row g-4">
+            <% related.forEach(function(p) { %>
+                <div class="col-6 col-md-3">
+                    <div class="product-card">
+                        <a href="/product/<%= p._id %>" class="thumb-wrap d-block">
+                            <img src="<%= p.image || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500' %>" alt="<%= p.name %>">
+                        </a>
+                        <div class="card-body">
+                            <h5><a href="/product/<%= p._id %>" class="text-decoration-none text-dark"><%= p.name %></a></h5>
+                            <div class="price">₹<%= p.price %></div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+</section>
+
+<%- include('../layouts/footer') %>
+<script src="/javascript/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+.auth-wrap{
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(198,149,44,.10), transparent 40%),
+        var(--paper);
+    padding: 3rem 0;
+}
+
+.auth-card{
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.auth-card .auth-side{
+    background: var(--ink);
+    color: #fff;
+    padding: 3rem 2.25rem;
+    height: 100%;
+    display:flex; flex-direction:column; justify-content:center;
+    position: relative;
+    overflow: hidden;
+}
+.auth-card .auth-side::before{
+    content:"";
+    position:absolute; width:260px; height:36px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+    transform: rotate(-10deg);
+    top: 12%; right: -70px; opacity:.85; border-radius:3px;
+}
+.auth-card .auth-side h2{ color:#fff; font-size:1.9rem; }
+.auth-card .auth-side p{ color: rgba(255,255,255,.7); }
+
+.auth-card .auth-form{
+    padding: 3rem 2.5rem;
+}
+
+.password-field{ position: relative; }
+.password-toggle{
+    position: absolute;
+    right: 12px; top: 50%; transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    background: none; border: none;
+}
+.password-toggle:hover{ color: var(--ink); }
+
+.password-strength{
+    height: 5px;
+    border-radius: 4px;
+    background: var(--border);
+    margin-top: .5rem;
+    overflow: hidden;
+}
+.password-strength-bar{
+    height: 100%;
+    width: 0%;
+    transition: width .25s ease, background .25s ease;
+    background: var(--danger);
+}
+.password-strength-label{
+    font-size: .75rem;
+    color: var(--text-muted);
+    margin-top: .25rem;
+    display:block;
+}
+
+.auth-divider{
+    display:flex; align-items:center; gap:.75rem;
+    color: var(--text-muted);
+    font-size:.8rem;
+    margin: 1.25rem 0;
+}
+.auth-divider::before, .auth-divider::after{
+    content:""; flex:1; height:1px; background: var(--border);
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layouts/head', { title: 'Sign in — Scatch', pageCss: ['auth'] }) %>
+<body>
+<%- include('../layouts/navbar') %>
+
+<section class="auth-wrap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="auth-card row g-0 fade-up">
+
+                    <div class="col-lg-5 d-none d-lg-flex">
+                        <div class="auth-side">
+                            <p class="eyebrow mb-3">Welcome back</p>
+                            <h2>Good to<br>see you again.</h2>
+                            <p class="mt-3">Sign in to view your orders, manage your profile,
+                                and pick up your cart where you left off.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="auth-form">
+                            <h3 class="mb-1">Sign in</h3>
+                            <p class="text-muted mb-4">Enter your details to continue.</p>
+
+                            <div id="loginAlert" class="alert d-none" role="alert"></div>
+
+                            <ul class="nav nav-pills mb-4 small" id="loginRoleTabs">
+                                <li class="nav-item">
+                                    <button class="nav-link active" type="button" data-role="usher">Shopper</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link" type="button" data-role="owner">Store Owner</button>
+                                </li>
+                            </ul>
+
+                            <form id="loginForm" novalidate>
+                                <input type="hidden" id="loginRole" value="usher">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email" name="email" required placeholder="you@example.com">
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="form-label">Password</label>
+                                    <div class="password-field">
+                                        <input type="password" class="form-control" id="password" name="password" required placeholder="Your password">
+                                        <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                                        <label class="form-check-label small" for="rememberMe">Remember me</label>
+                                    </div>
+                                    <a href="#" class="small fw-semibold text-dark" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot password?</a>
+                                </div>
+
+                                <button type="submit" class="btn btn-gold w-100 py-2" id="loginBtn">
+                                    Sign in
+                                </button>
+
+                                <div class="auth-divider">or</div>
+
+                                <p class="text-center small mb-0">
+                                    New here? <a href="/register" class="fw-semibold text-dark">Create an account</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Forgot password modal (UI only — no backend reset-password route exists yet) -->
+<div class="modal fade" id="forgotModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reset your password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small">Password reset isn't wired to the backend yet — this is a UI
+                    placeholder. Enter your email and we'll show you what the flow looks like.</p>
+                <input type="email" class="form-control" placeholder="you@example.com">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-ink" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-gold" data-bs-dismiss="modal">Send reset link</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../layouts/footer') %>
+<script src="/javascript/auth.js"></script>
+</body>
+</html>
